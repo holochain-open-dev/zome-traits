@@ -34,7 +34,7 @@ use mutual_credit::MutualCreditZomeTrait;
 
 struct HoloFuel; 
 
-#[zome_trait_extern]
+#[implement_zome_trait_as_externs]
 impl MutualCreditZomeTrait for HoloFuel {
 
 	fn get_balance(agent: AgentPubKey) -> ExternResult<f64> {
@@ -53,13 +53,10 @@ impl MutualCreditZomeTrait for HoloFuel {
 
 		Ok(())
 	}
-	
+
 }
 
-#[zome_traits_extern] // Defines a `__zome_traits` function
-pub enum ZomeTraits {
-	MutualCredit(HoloFuel)
-}
+implemented_zome_traits![HoloFuel] // Defines a `__zome_traits` function
 ```
 
 ## Goals
@@ -75,10 +72,10 @@ pub enum ZomeTraits {
 
 Macro that can be placed on a trait that enforces that there is no `&self` parameter in any of the methods of the trait.
 
-### zome_trait_extern
+### implement_zome_trait_as_externs
 
 Macro that takes the implementation of a trait and defines all its methods as `#[hdk_extern]`.
 
-### zome_traits_extern
+### implemented_zome_traits
 
 Macro that takes an enum of structs and defines a `__zome_traits` zome function that returns the zome traits that this zome implements, and describes their function signatures with something like ts-rs.
