@@ -48,7 +48,7 @@ pub fn implement_zome_trait_as_externs(_args: TokenStream, input: TokenStream) -
 
     let items_map_extern = fn_items.clone().map(|item| {
         let fn_name = item.sig.ident;
-        let extern_fn_name = format!("__{}", fn_name)
+        let extern_fn_name = format!("{}", fn_name)
             .parse::<proc_macro2::TokenStream>()
             .unwrap();
         let input = item
