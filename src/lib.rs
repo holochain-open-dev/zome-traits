@@ -23,7 +23,7 @@ pub fn zome_trait(_args: TokenStream, input: TokenStream) -> TokenStream {
     let len = hash.len();
 
     let expanded = quote! {
-        const #hash_var_name: [u8; #len] = *#hash_value;
+        pub const #hash_var_name: [u8; #len] = *#hash_value;
         pub trait #trait_name {
             #(#trait_items)*
 
