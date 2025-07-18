@@ -1,14 +1,9 @@
-[package]
-name = "hc_zome_traits"
-version = "0.1.0"
-edition = "2021"
+[workspace]
+members = ["crates/*"]
+resolver = "2"
 
-[lib]
-proc-macro = true
+[workspace.dependencies]
+hdi = "0.6"
+hdk = { version = "0.5", features = [ "unstable-functions" ] }
+serde = "1"
 
-[dependencies]
-syn = { version = "2.0", features = ["full", "extra-traits"] }
-quote = "1.0"
-proc-macro2 = "1"
-blake = "2"
-convert_case = "0.6.0"
